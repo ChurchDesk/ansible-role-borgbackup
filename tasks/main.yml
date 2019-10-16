@@ -65,6 +65,16 @@
     dest: "/etc/borgmatic/{{ borgmatic_config_name }}"
     mode: 0600
 
+- name: Set borgmatic operations
+  set_fact:
+    borgmatic_operations: '--create --prune'
+  when: borg_prune_enabled
+
+- name: Set borgmatic operations
+  set_fact:
+    borgmatic_operations: '--create'
+  when: !borg_prune_enabled
+
 - name: Add cron-job for borgmatic (large repo, create and check separate)
   block:
     - cron: 
@@ -73,7 +83,7 @@
         minute: "{{ 59 |random }}"
         user: "root"
         cron_file: borgmatic
-        job: "/usr/local/bin/borgmatic -c /etc/borgmatic/{{ borgmatic_config_name }} --create --prune"
+        job: "/usr/local/bin/borgmatic -c /etc/borgmatic/{{ borgmatic_config_name }} {{borgmatic_operations}}"
     - cron: 
         name: "borgmatic-check"
         day: "{{ 28 | random }}"
@@ -92,7 +102,7 @@
         minute: "{{ 59 | random }}"
         user: "root"
         cron_file: borgmatic
-        job: "/usr/local/bin/borgmatic -c /etc/borgmatic/{{ borgmatic_config_name }}"
+        job: "/usr/local/bin/borgmatic -c /etc/borgmatic/{{ borgmatic_config_name }} {{borgmatic_operations}} --check"
     - cron:
         name: "borgmatic-check"
         state: absent
