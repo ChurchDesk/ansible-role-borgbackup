@@ -73,7 +73,7 @@
 - name: Set borgmatic operations
   set_fact:
     borgmatic_operations: '--create'
-  when: !borg_prune_enabled
+  when: not borg_prune_enabled
 
 - name: Add cron-job for borgmatic (large repo, create and check separate)
   block:
