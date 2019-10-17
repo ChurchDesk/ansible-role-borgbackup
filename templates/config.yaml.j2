@@ -75,7 +75,6 @@ storage:
     # prefix in the consistency section as well.
     archive_name_format: '{hostname}-{now}'
 
-{% if borg_prune_enabled %}
 # Retention policy for how many backups to keep in each category. See
 # https://borgbackup.readthedocs.org/en/stable/usage.html#borg-prune for details.
 # At least one of the "keep" options is required for pruning to work.
@@ -113,8 +112,6 @@ retention:
 {% if borg_retention_policy.keep_yearly is defined %}
     # Number of yearly archives to keep.
     keep_yearly: {{ borg_retention_policy.keep_yearly }}
-{% endif %}
-
 {% endif %}
 
     # When pruning, only consider archive names starting with this prefix.
