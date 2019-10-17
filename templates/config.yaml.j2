@@ -148,10 +148,17 @@ hooks:
     # List of one or more shell commands or scripts to execute before creating a backup.
     before_backup:
         - echo "`date` - Starting backup."
+        {% if borgmatic_before_backup is defined %}
+        - {{borgmatic_before_backup}}
+        {% endif %}
+
 
     # List of one or more shell commands or scripts to execute after creating a backup.
     after_backup:
         - echo "`date` - Finished backup."
+        {% if borgmatic_after_backup is defined %}
+        - {{borgmatic_after_backup}}
+        {% endif %}
 
     # List of one or more shell commands or scripts to execute in case an exception has occurred.
     on_error:

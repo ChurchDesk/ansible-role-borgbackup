@@ -19,6 +19,9 @@ An Ansible Role that sets up automated remote backups on the target machine. Use
 - `borg_ssh_command`: Command to use instead of just "ssh". This can be used to specify ssh options.
 - `borg_encryption_passcommand`: The standard output of this command is used to unlock the encryption key.
 - `borg_retention_policy`: Retention policy for how many backups to keep in each category (daily, weekly, monthly, etc).
+- `borgmatic_before_backup`: Command to run before backup
+- `borgmatic_after_backup`: Command to run after backup
+
 
 ### Optional Arguments for [BorgBase.com](https://www.borgbase.com) repository auto creation
 - `create_repo`: Whether to let the role create the repository for the server. Default: False
