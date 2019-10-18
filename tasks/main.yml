@@ -65,6 +65,9 @@
     dest: "/etc/borgmatic/{{ borgmatic_config_name }}"
     mode: 0600
 
+- name: Test Borgmatic Configuration
+  command: /usr/local/bin/borgmatic -c /etc/borgmatic/{{ borgmatic_config_name }} info
+
 - name: Set borgmatic operations
   set_fact:
     borgmatic_operations: '--create --prune'
