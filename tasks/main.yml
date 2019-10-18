@@ -77,15 +77,15 @@
 
 - name: Add cron-job for borgmatic (large repo, create and check separate)
   block:
-    - cron: 
-        name: "borgmatic"
+    - cron:
+        name: "borgmatic {{ borgmatic_config_name }}"
         hour: "{{ 6 |random }}"
         minute: "{{ 59 |random }}"
         user: "root"
         cron_file: borgmatic
         job: "/usr/local/bin/borgmatic -c /etc/borgmatic/{{ borgmatic_config_name }} {{borgmatic_operations}}"
-    - cron: 
-        name: "borgmatic-check"
+    - cron:
+        name: "borgmatic-check {{ borgmatic_config_name }}"
         day: "{{ 28 | random }}"
         hour: "{{ range(7, 24) | random }}"
         minute: "{{ 59 | random }}"
@@ -96,15 +96,15 @@
 
 - name: Add cron-job for borgmatic (normal-sized repo)
   block:
-    - cron: 
-        name: "borgmatic"
+    - cron:
+        name: "borgmatic {{ borgmatic_config_name }}"
         hour: "{{ 6 | random }}"
         minute: "{{ 59 | random }}"
         user: "root"
         cron_file: borgmatic
         job: "/usr/local/bin/borgmatic -c /etc/borgmatic/{{ borgmatic_config_name }} {{borgmatic_operations}} --check"
     - cron:
-        name: "borgmatic-check"
+        name: "borgmatic-check {{ borgmatic_config_name }}"
         state: absent
   when: not borgmatic_large_repo
 
