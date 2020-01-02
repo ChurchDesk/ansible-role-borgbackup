@@ -1,6 +1,6 @@
 version: "1"
 rules:
   - base: master
-    upstream: borgbase/ansible-role-borgbackup
+    upstream: ansible-role-borgbackup:master
     autoMerge: false
     autoMergeHardReset: false
