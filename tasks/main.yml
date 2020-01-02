@@ -86,16 +86,17 @@
   block:
     - cron:
         name: "borgmatic"
-        hour: "{{ 6 |random }}"
-        minute: "{{ 59 |random }}"
+        day: "{{ borgmatic_cron_day }}"
+        hour: "{{ borgmatic_cron_hour }}"
+        minute: "{{ borgmatic_cron_minute }}"
         user: "root"
         cron_file: borgmatic
         job: "/usr/local/bin/borgmatic {{borgmatic_operations}}"
     - cron:
         name: "borgmatic-check"
-        day: "{{ 28 | random }}"
-        hour: "{{ range(7, 24) | random }}"
-        minute: "{{ 59 | random }}"
+        day: "{{ borgmatic_large_repo_cron_day }}"
+        hour: "{{ borgmatic_large_repo_cron_hour }}"
+        minute: "{{ borgmatic_large_repo_cron_minute }}"
         user: "root"
         cron_file: borgmatic
         job: "/usr/local/bin/borgmatic --check"
@@ -105,8 +106,8 @@
   block:
     - cron:
         name: "borgmatic"
-        hour: "{{ 6 | random }}"
-        minute: "{{ 59 | random }}"
+        hour: "{{ borgmatic_cron_hour }}"
+        minute: "{{ borgmatic_cron_minute }}"
         user: "root"
         cron_file: borgmatic
         job: "/usr/local/bin/borgmatic {{borgmatic_operations}} --check"
