@@ -163,3 +163,12 @@ hooks:
 {% for cmd in borgmatic_failure_command %}
         - {{ cmd }}
 {% endfor %}
+
+{% if borg_healthchecks is defined %}
+    # Healthchecks ping URL or UUID to notify when a backup begins, ends, or errors.
+    # Create an account at https://healthchecks.io if you'd like to use this service.
+    # See
+    # https://torsion.org/borgmatic/docs/how-to/monitor-your-backups/#healthchecks-hook
+    # for details.
+    healthchecks: {{ borg_healthchecks }}
+{% endif %}
