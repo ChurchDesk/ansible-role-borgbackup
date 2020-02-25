@@ -22,6 +22,12 @@ An Ansible Role that sets up automated remote backups on the target machine. Use
 - `borg_encryption_passcommand`: The standard output of this command is used to unlock the encryption key.
 - `borg_retention_policy`: Retention policy for how many backups to keep in each category (daily, weekly, monthly, etc).
 - `borg_prune_enabled`: Whether to run prune as part of the cron operations. Set to false when using `append only`. Pruning can then be done from a separate secure machine.
+- `borgmatic_cron_day`:
+- `borgmatic_cron_hour`: Configure the hour when the backup shall run. Default is randomized between 0-6 local time.
+- `borgmatic_cron_minute`: Configure the minute when the backup shall run. Default is randomized between 0-59 local time.
+- `borgmatic_large_repo_cron_day`:
+- `borgmatic_large_repo_cron_hour`: Configure the hour when the backup shall run.
+- `borgmatic_large_repo_cron_minute`: Configure the minute when the backup shall run.
 
 
 ### Optional Arguments for [BorgBase.com](https://www.borgbase.com) repository auto creation
