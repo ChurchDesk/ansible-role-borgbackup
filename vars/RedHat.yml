@@ -6,7 +6,11 @@ borg_packages:
   - gcc-c++
   - openssl-devel
   - python36-pip
+  - python36-wheel
   - python36-devel
+  - python-setuptools
+  - openssh-clients
+  - cronie
 
 python_bin: python3
 pip_bin: pip3
