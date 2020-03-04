@@ -28,6 +28,13 @@
   pip:
     name: "{{ borg_python_packages }}"
     executable: "{{ pip_bin }}"
+    state: latest
+
+- name: Install Borgmatic
+  pip:
+    name: borgmatic
+    executable: "{{ pip_bin }}"
+    state: latest
 
 - name: Ensure root has SSH key.
   user:
